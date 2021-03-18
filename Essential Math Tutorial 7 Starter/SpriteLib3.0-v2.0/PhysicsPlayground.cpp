@@ -104,6 +104,47 @@ int assetMakerbg(b2World* m_physicsWorld, string asset, int sizex, int sizey, in
 	}
 }
 
+int pushObject(b2World* m_physicsWorld, string asset, int sizex, int sizey, int posx, int posy) {
+	{
+		float playerx, playery;
+		playerx = ECS::GetComponent<Transform>(playerid).GetPositionX();
+		playery = ECS::GetComponent<Transform>(playerid).GetPositionY();
+		auto entity = ECS::CreateEntity();
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+
+		//Sets up the components
+		std::string fileName = asset;
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, sizex, sizey);
+		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(45.f, -8.f, 3.f));
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_dynamicBody;
+		tempDef.position.Set(float32(posx), float32(posy));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, OBJECTS, ENVIRONMENT, 0.3f);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, OBJECTS, PLAYER | ENEMY | GROUND | OBJECTS | HEXAGON);
+
+		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
+		tempPhsBody.SetFixedRotation(true);
+		tempPhsBody.SetRotationAngleDeg(0.f);
+
+		return entity;
+	}
+}
+
 void trigger(b2World* m_physicsWorld, float platformx, float platformy, int platformw, int platformh, float triggerx, float triggery, int& puzzleWall) {
 	{
 		//wall
@@ -631,7 +672,6 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	//assetMaker(m_physicsWorld, "bookshelffast.png", 40, 80, 2408, 2441); //bookshelf
 	//assetMaker(m_physicsWorld, "bookshelffast.png", 40, 80, 2408, 2531);
 	//assetMaker(m_physicsWorld, "bookshelffast.png", 40, 80, 2408, 2621);//bookshelf
-
 	////outside library background
 	//assetMakerbg(m_physicsWorld, "black.png", 1500, 1500, 2000, 2650);
 
@@ -955,10 +995,16 @@ void PhysicsPlayground::Update()
 	auto& flashlight = ECS::GetComponent<PhysicsBody>(flashlightid);
 	auto& cursor = ECS::GetComponent<PhysicsBody>(cursorid);
 	auto& player = ECS::GetComponent<PhysicsBody>(playerid);
-
 	float playerx, playery, flashlightangle;
 	playerx = ECS::GetComponent<Transform>(playerid).GetPositionX();
 	playery = ECS::GetComponent<Transform>(playerid).GetPositionY();
+
+	for (b2Body* b = m_physicsWorld->GetBodyList(); b; b = b->GetNext())
+	{
+		if (b->GetLinearVelocity() != b2Vec2(0,0)) {
+			b->SetLinearVelocity(b2Vec2(0, 0));
+		}
+	}
 
 	POINT point;
 	GetCursorPos(&point); //gets coordinates of cursor
