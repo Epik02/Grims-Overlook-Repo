@@ -1,0 +1,153 @@
+[{
+  "version": "1.0",
+  "image": {
+    "name": "/home/videosdownloader/public_html/image/public/uploadt/FLASHBARS.png",
+    "baseName": "FLASHBARS.png",
+    "format": "PNG",
+    "formatDescription": "PNG",
+    "mimeType": "image/png",
+    "class": "DirectClass",
+    "geometry": {
+      "width": 1183,
+      "height": 303,
+      "x": 0,
+      "y": 0
+    },
+    "resolution": {
+      "x": 28.35,
+      "y": 28.35
+    },
+    "printSize": {
+      "x": 41.7284,
+      "y": 10.6878
+    },
+    "units": "PixelsPerCentimeter",
+    "type": "TrueColorAlpha",
+    "baseType": "Undefined",
+    "endianness": "Undefined",
+    "colorspace": "sRGB",
+    "depth": 8,
+    "baseDepth": 8,
+    "channelDepth": {
+      "alpha": 8,
+      "red": 8,
+      "green": 8,
+      "blue": 8
+    },
+    "pixels": 1433796,
+    "imageStatistics": {
+      "Overall": {
+        "min": 0,
+        "max": 255,
+        "mean": 9.1694,
+        "median": 0,
+        "standardDeviation": 8475.86,
+        "kurtosis": 25.1333,
+        "skewness": 5.0159,
+        "entropy": 0.07614
+      }
+    },
+    "channelStatistics": {
+      "alpha": {
+        "min": 0,
+        "max": 255,
+        "mean": 24.2157,
+        "median": 0,
+        "standardDeviation": 18634.3,
+        "kurtosis": 5.54209,
+        "skewness": 2.72463,
+        "entropy": 0.0948628
+      },
+      "red": {
+        "min": 0,
+        "max": 241,
+        "mean": 6.11911,
+        "median": 0,
+        "standardDeviation": 5715.43,
+        "kurtosis": 21.0782,
+        "skewness": 4.18365,
+        "entropy": 0.0963428
+      },
+      "green": {
+        "min": 0,
+        "max": 229,
+        "mean": 3.10245,
+        "median": 0,
+        "standardDeviation": 4707.42,
+        "kurtosis": 49.3328,
+        "skewness": 6.71022,
+        "entropy": 0.0564928
+      },
+      "blue": {
+        "min": 0,
+        "max": 185,
+        "mean": 3.24033,
+        "median": 0,
+        "standardDeviation": 4846.33,
+        "kurtosis": 39.0181,
+        "skewness": 6.24351,
+        "entropy": 0.0568617
+      }
+    },
+    "alpha": "#00000000",
+    "renderingIntent": "Perceptual",
+    "gamma": 0.45455,
+    "chromaticity": {
+      "redPrimary": {
+        "x": 0.64,
+        "y": 0.33
+      },
+      "greenPrimary": {
+        "x": 0.3,
+        "y": 0.6
+      },
+      "bluePrimary": {
+        "x": 0.15,
+        "y": 0.06
+      },
+      "whitePrimary": {
+        "x": 0.3127,
+        "y": 0.329
+      }
+    },
+    "matteColor": "#BDBDBD",
+    "backgroundColor": "#FFFFFF",
+    "borderColor": "#DFDFDF",
+    "transparentColor": "#00000000",
+    "interlace": "None",
+    "intensity": "Undefined",
+    "compose": "Over",
+    "pageGeometry": {
+      "width": 1183,
+      "height": 303,
+      "x": 0,
+      "y": 0
+    },
+    "dispose": "Undefined",
+    "iterations": 0,
+    "compression": "Zip",
+    "orientation": "Undefined",
+    "properties": {
+      "date:create": "2021-03-18T04:39:53+00:00",
+      "date:modify": "2021-03-18T04:39:53+00:00",
+      "png:cHRM": "chunk was found (see Chromaticity, above)",
+      "png:gAMA": "gamma=0.45455 (See Gamma, above)",
+      "png:IHDR.bit-depth-orig": "8",
+      "png:IHDR.bit_depth": "8",
+      "png:IHDR.color-type-orig": "6",
+      "png:IHDR.color_type": "6 (RGBA)",
+      "png:IHDR.interlace_method": "0 (Not interlaced)",
+      "png:IHDR.width,height": "1183, 303",
+      "png:pHYs": "x_res=2835, y_res=2835, units=1",
+      "png:sRGB": "intent=1 (Relative Intent)",
+      "signature": "7bd92c6a04bed84aad9f7cb47c1f34f60cc575ca3d0db4d77cd84c33d0b9a9ba"
+    },
+    "tainted": false,
+    "filesize": "19042B",
+    "numberPixels": "358449",
+    "pixelsPerSecond": "15.4374MB",
+    "userTime": "0.020u",
+    "elapsedTime": "0:01.023",
+    "version": "ImageMagick 7.0.10-58 Q16 x86_64 2021-01-14 https://imagemagick.org"
+  }
+}]

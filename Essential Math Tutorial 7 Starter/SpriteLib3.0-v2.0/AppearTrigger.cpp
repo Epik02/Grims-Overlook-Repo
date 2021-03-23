@@ -1,7 +1,7 @@
-#include "PopUpTrigger.h"
+#include "AppearTrigger.h"
 #include "ECS.h"
 
-void PopUpTrigger::OnTrigger()
+void AppearTrigger::OnTrigger()
 {
 	Trigger::OnTrigger();
 
@@ -15,29 +15,29 @@ void PopUpTrigger::OnTrigger()
 	}
 }
 
-void PopUpTrigger::OnEnter()
+void AppearTrigger::OnEnter()
 {
 	Trigger::OnEnter();
 
 	if (!triggered)
 	{
 		ECS::GetComponent<Sprite>(m_targetEntities[2]).SetTransparency(1);
-
 		triggered = true;
 	}
 }
 
-void PopUpTrigger::pleasework(bool& testing) {
+void AppearTrigger::pleasework(bool& testing) {
 	testing = triggered;
 }
 
-bool PopUpTrigger::GetTrigger() {
+bool AppearTrigger::GetTrigger() {
 	return triggered;
 }
 
-void PopUpTrigger::OnExit()
+void AppearTrigger::OnExit()
 {
 	Trigger::OnExit();
+	ECS::GetComponent<Sprite>(m_targetEntities[2]).SetTransparency(1);
+	ECS::GetComponent<Sprite>(m_targetEntities[0]).SetTransparency(0);
 	triggered = false;
-	ECS::GetComponent<Sprite>(m_targetEntities[2]).SetTransparency(0);
 }

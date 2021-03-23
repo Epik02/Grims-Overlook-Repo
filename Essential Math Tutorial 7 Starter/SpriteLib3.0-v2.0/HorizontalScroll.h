@@ -24,7 +24,7 @@ private:
 	Camera* m_cam = nullptr;
 	Transform* m_focus = nullptr;
 
-	float m_offset = 5.f;
+	float m_offset = 0.f; //camera follows player exactly with 0, higher numbers player has to walk into camera to move it
 };
 
 //Sends vertical scrolling camera TO json file
