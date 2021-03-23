@@ -38,6 +38,49 @@ void AnimationSpritePlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<VerticalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
 	}
 
+	////Flashlightbar
+	//{
+	//	//Creates entity
+	//	auto entity = ECS::CreateEntity();
+
+	//	//Add components
+	//	ECS::AttachComponent<Sprite>(entity);
+	//	ECS::AttachComponent<Transform>(entity);
+	//	ECS::AttachComponent<PhysicsBody>(entity);
+	//	ECS::AttachComponent<AnimationController>(entity);
+
+	//	//Sets up components
+	//	std::string fileName = "FLASHBARS.json";
+	//	//std::string animations = "FLASHBARS.json"; //need to change png to json
+	//	auto& animController = ECS::GetComponent<AnimationController>(entity);
+	//	animController.InitUVs(fileName);
+	//	//adds first animation
+	//	animController.AddAnimation(Animation());
+	//	//Sets active animation
+	//	animController.SetActiveAnim(0);
+	//	//gets first animation
+	//	auto& anim = animController.GetAnimation(0);
+	//	anim.AddFrame(vec2(13, 52), vec2(356, 80));
+
+
+	//	//makes it repeat
+	//	anim.SetRepeating(true);
+	//	//sets the time between frames
+	//	anim.SetSecPerFrame(0.1667f);
+
+
+	//	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 50, 70, true, &animController);
+	//	float shrinkX = 0.f;
+	//	float shrinkY = 0.f;
+	//	b2Body* tempBody;
+	//	b2BodyDef tempDef;
+	//	tempDef.type = b2_staticBody;
+	//	tempDef.position.Set(float32(30.f), float32(30.f));
+
+	//	//ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 100.f));
+
+	//}
+
 	//Setup helloworld sign
 	{
 		auto entity = ECS::CreateEntity();
