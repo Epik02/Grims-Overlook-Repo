@@ -122,6 +122,7 @@ int pushObject(b2World* m_physicsWorld, string asset, int sizex, int sizey, int 
 		float playerx, playery;
 		playerx = ECS::GetComponent<Transform>(playerid).GetPositionX();
 		playery = ECS::GetComponent<Transform>(playerid).GetPositionY();
+		return 0;
 	}
 int HUD(b2World* m_physicsWorld, string asset, int sizex, int sizey, int posx, int posy, int transparency) {
 	{
