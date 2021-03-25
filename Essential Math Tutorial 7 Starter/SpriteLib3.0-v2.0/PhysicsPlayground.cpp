@@ -79,6 +79,47 @@ int assetMaker(b2World* m_physicsWorld, string asset, int sizex, int sizey, int 
 	}
 }
 
+int assetMakerturn(b2World* m_physicsWorld, string asset, int sizex, int sizey, int posx, int posy) {
+	{
+		float playerx, playery;
+		playerx = ECS::GetComponent<Transform>(playerid).GetPositionX();
+		playery = ECS::GetComponent<Transform>(playerid).GetPositionY();
+		auto entity = ECS::CreateEntity();
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+
+		//Sets up the components
+		std::string fileName = asset;
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, sizex, sizey);
+		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(45.f, -8.f, 3.f));
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32(posx), float32(posy));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, OBJECTS, ENVIRONMENT, 0.3f);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY | OBJECTS | HEXAGON);
+
+		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
+		tempPhsBody.SetFixedRotation(false);
+		tempPhsBody.SetRotationAngleDeg(90.f);
+
+		return entity;
+	}
+}
+
 int assetMakerbg(b2World* m_physicsWorld, string asset, int sizex, int sizey, int posx, int posy) {
 	{
 		auto entity = ECS::CreateEntity();
@@ -112,6 +153,47 @@ int assetMakerbg(b2World* m_physicsWorld, string asset, int sizex, int sizey, in
 		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
 		tempPhsBody.SetFixedRotation(false);
 		tempPhsBody.SetRotationAngleDeg(0.f);
+
+		return entity;
+	}
+}
+
+int objectMaker(b2World* m_physicsWorld, string asset, int sizex, int sizey, int posx, int posy, int rot) {
+	{
+		float playerx, playery;
+		playerx = ECS::GetComponent<Transform>(playerid).GetPositionX();
+		playery = ECS::GetComponent<Transform>(playerid).GetPositionY();
+		auto entity = ECS::CreateEntity();
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+
+		//Sets up the components
+		std::string fileName = asset;
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, sizex, sizey);
+		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(45.f, -8.f, 5.f));
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32(posx), float32(posy));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, OBJECTS, ENVIRONMENT, 0.3f);
+		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, ENEMY | OBJECTS | HEXAGON);
+
+		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
+		tempPhsBody.SetFixedRotation(false);
+		tempPhsBody.SetRotationAngleDeg(rot);
 
 		return entity;
 	}
@@ -843,10 +925,31 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	assetMaker(m_physicsWorld, "darkbrown.jpg", 230, 26, 2336, 2283); //bottom
 	assetMaker(m_physicsWorld, "darkbrown.jpg", 20, 330, 2219, 2435); //top
 
-	assetMaker(m_physicsWorld, "table.png", 100, 67, 2290, 2339); //table
-	assetMaker(m_physicsWorld, "bookshelf.png", 40, 80, 2408, 2441); //bookshelf
-	assetMaker(m_physicsWorld, "bookshelf.png", 40, 80, 2408, 2531);
-	assetMaker(m_physicsWorld, "bookshelf.png", 40, 80, 2408, 2621);//bookshelf
+
+	//office maze
+	assetMakerturn(m_physicsWorld, "bookshelf.png", 40, 80, 2270, 2580);
+	assetMakerturn(m_physicsWorld, "bookshelf.png", 40, 80, 2350, 2580);
+	assetMakerturn(m_physicsWorld, "bookshelf.png", 40, 80, 2310, 2500);
+	assetMaker(m_physicsWorld, "bookshelf.png", 40, 80, 2370, 2480);
+	assetMakerturn(m_physicsWorld, "bookshelf.png", 40, 80, 2350, 2420);
+	assetMaker(m_physicsWorld, "bookshelf.png", 30, 60, 2250, 2410);
+	assetMaker(m_physicsWorld, "bookshelf.png", 40, 80, 2370, 2351);
+
+	//props
+	//Assorted Tools.png
+	//Plant.png
+	//Pile of Books.png
+	objectMaker(m_physicsWorld, "Assorted Tools.png", 20, 20, 2280, 2580, 0);
+	objectMaker(m_physicsWorld, "Pile of Books.png", 20, 20, 2310, 2500, 0);
+	objectMaker(m_physicsWorld, "Pile of Books.png", 20, 20, 2310, 2330, 0);
+	assetMaker(m_physicsWorld, "Plant.png", 40, 40, 2416, 2331);
+	objectMaker(m_physicsWorld, "Plant.png", 10, 10, 2250, 2435, 0);
+	objectMaker(m_physicsWorld, "Plant.png", 10, 10, 2250, 2390, 0);
+	objectMaker(m_physicsWorld, "Pile of Books.png", 15, 15, 2330, 2330, 45);
+	//objectMaker(m_physicsWorld, "Assorted Tools.png", 15, 15, );
+
+	assetMaker(m_physicsWorld, "table.png", 100, 67, 2290, 2330); //table
+
 
 	//outside library background
 	assetMakerbg(m_physicsWorld, "black.png", 1500, 1500, 2000, 2650);
