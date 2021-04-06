@@ -201,12 +201,12 @@ int objectMaker(b2World* m_physicsWorld, string asset, int sizex, int sizey, int
 }
 
 int pushObject(b2World* m_physicsWorld, string asset, int sizex, int sizey, int posx, int posy)
-	{
-		float playerx, playery;
-		playerx = ECS::GetComponent<Transform>(playerid).GetPositionX();
-		playery = ECS::GetComponent<Transform>(playerid).GetPositionY();
-		return 0;
-	}
+{
+	float playerx, playery;
+	playerx = ECS::GetComponent<Transform>(playerid).GetPositionX();
+	playery = ECS::GetComponent<Transform>(playerid).GetPositionY();
+	return 0;
+}
 int HUD(b2World* m_physicsWorld, string asset, int sizex, int sizey, int posx, int posy, int transparency) {
 	{
 		auto entity = ECS::CreateEntity();
@@ -324,7 +324,7 @@ void trigger(b2World* m_physicsWorld, float platformx, float platformy, int plat
 
 void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 {
-	
+	myPlaySound("Something's Outside.mp3");
 
 	//Dynamically allocates the register
 	m_sceneReg = new entt::registry;
@@ -337,7 +337,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 
 	EffectManager::CreateEffect(EffectType::Vignette, windowWidth, windowHeight); // filters
 	EffectManager::CreateEffect(EffectType::Sepia, windowWidth, windowHeight);
-	
+
 
 	//Setup MainCamera Entity
 	{
@@ -362,7 +362,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<HorizontalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
 		ECS::GetComponent<VerticalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
 	}
-	
+
 	//Link entity
 	{
 		/*Scene::CreatePhysicsSprite(m_sceneReg, "LinkStandby", 80, 60, 1.f, vec3(0.f, 30.f, 2.f), b2_dynamicBody, 0.f, 0.f, true, true)*/
@@ -396,7 +396,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
 		//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, PLAYER, ENEMY | OBJECTS | PICKUP | TRIGGER, 0.5f, 3.f);
-		tempPhsBody = PhysicsBody(entity, tempBody, float((tempSpr.GetHeight() - shrinkY)/2.f), vec2(0.f, 0.f), false, PLAYER, ENVIRONMENT | ENEMY | OBJECTS | PICKUP | TRIGGER | HEXAGON, 5.f, 3.f);
+		tempPhsBody = PhysicsBody(entity, tempBody, float((tempSpr.GetHeight() - shrinkY) / 2.f), vec2(0.f, 0.f), false, PLAYER, ENVIRONMENT | ENEMY | OBJECTS | PICKUP | TRIGGER | HEXAGON, 5.f, 3.f);
 		//std::vector<b2Vec2> points = {b2Vec2(-tempSpr.GetWidth()/2.f, -tempSpr.GetHeight()/2.f), b2Vec2(tempSpr.GetWidth()/2.f, -tempSpr.GetHeight()/2.f), b2Vec2(0.f, tempSpr.GetHeight()/2.f)};
 		//tempPhsBody = PhysicsBody(entity, BodyType::TRIANGLE, tempBody, points, vec2(0.f, 0.f), false, PLAYER, ENEMY | OBJECTS | PICKUP | TRIGGER, 0.5f, 3.f);
 
@@ -886,8 +886,8 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	//	tempPhsBody = PhysicsBody(entity, tempBody, float(40.f - shrinkX), float(40.f - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | OBJECTS);
 	//	tempPhsBody.SetColor(vec4(1.f, 0.f, 0.f, 0.3f));
 	//}
-	
-	int truck = assetMaker(m_physicsWorld, "Truck.png",75, 125, -100, 0);
+
+	int truck = assetMaker(m_physicsWorld, "Truck.png", 75, 125, -100, 0);
 	int repairshop = assetMaker(m_physicsWorld, "Repairshop.png", 100, 100, 700, 100);
 	int library = assetMaker(m_physicsWorld, "library.png", 100, 100, 300, 100);
 
@@ -1009,7 +1009,7 @@ void PhysicsPlayground::GUIWindowUI()
 		m_secondWindow = !m_secondWindow;
 	}
 
-	
+
 	ImGui::End();
 }
 
@@ -1115,7 +1115,7 @@ void PhysicsPlayground::GUIWindowOne()
 	}
 
 	ImGui::Separator();
-	
+
 	ImGui::Text("Editing World Variables!");
 	if (ImGui::SliderFloat2("World Gravity", gravity, -1000.f, 1000.f, "%.2f"))
 	{
@@ -1136,7 +1136,7 @@ void PhysicsPlayground::GUIWindowOne()
 	ImGui::Image((void*)(intptr_t)TextureManager::FindTexture(imageLoad)->GetID(), ImVec2(150.f, 150.f), ImVec2(0, 1), ImVec2(1, 0));
 
 	ImGui::Separator();
-	
+
 	ImGui::Text("Editing Colors");
 	ImGui::ColorPicker4("Scene Background Color", &m_clearColor.x);
 
@@ -1159,7 +1159,7 @@ void PhysicsPlayground::GUIWindowTwo()
 	{
 		ImGui::Text("You are within Tab 1");
 
-		if (ImGui::ImageButton((void*)(intptr_t)TextureManager::FindTexture(imageLoad1)->GetID(), ImVec2(100.f, 100.f), ImVec2(0,1), ImVec2(1,0)))
+		if (ImGui::ImageButton((void*)(intptr_t)TextureManager::FindTexture(imageLoad1)->GetID(), ImVec2(100.f, 100.f), ImVec2(0, 1), ImVec2(1, 0)))
 		{
 			hahaPressed = "You shouldn't have pressed that...";
 		}
@@ -1182,10 +1182,23 @@ void PhysicsPlayground::GUIWindowTwo()
 
 		ImGui::EndTabItem();
 	}
-	
+
 	ImGui::EndTabBar();
 
 	ImGui::End();
+}
+
+
+void PhysicsPlayground::myPlaySound(std::string filepath)
+{
+	if (sounds[filepath] == nullptr) {
+
+		ToneFire::CoreSound* sound1=new ToneFire::CoreSound{ filepath, FMOD_2D };
+		sounds[filepath] = sound1;
+	}
+
+	sounds[filepath]->Play();
+
 }
 
 
@@ -1264,21 +1277,21 @@ void PhysicsPlayground::KeyboardDown()
 			//energy = tempenergy - clock();
 			//cout << energy;
 		}
-	//	if (energy >= 50) {
-	//		ECS::GetComponent<Sprite>(fbfull).SetTransparency(1.f);
-	//		ECS::GetComponent<Sprite>(fbhalf).SetTransparency(0.f);
-	//		ECS::GetComponent<Sprite>(fbempty).SetTransparency(0.f);
-	//	}
-	//	else if (energy <= 50 && energy > 0) {
-	//		ECS::GetComponent<Sprite>(fbfull).SetTransparency(0.f);
-	//		ECS::GetComponent<Sprite>(fbhalf).SetTransparency(1.f);
-	//		ECS::GetComponent<Sprite>(fbempty).SetTransparency(0.f);
-	//	}
-	//	else {
-	//		ECS::GetComponent<Sprite>(fbfull).SetTransparency(0.f);
-	//		ECS::GetComponent<Sprite>(fbhalf).SetTransparency(0.f);
-	//		ECS::GetComponent<Sprite>(fbempty).SetTransparency(1.f);
-	//	}
+		//	if (energy >= 50) {
+		//		ECS::GetComponent<Sprite>(fbfull).SetTransparency(1.f);
+		//		ECS::GetComponent<Sprite>(fbhalf).SetTransparency(0.f);
+		//		ECS::GetComponent<Sprite>(fbempty).SetTransparency(0.f);
+		//	}
+		//	else if (energy <= 50 && energy > 0) {
+		//		ECS::GetComponent<Sprite>(fbfull).SetTransparency(0.f);
+		//		ECS::GetComponent<Sprite>(fbhalf).SetTransparency(1.f);
+		//		ECS::GetComponent<Sprite>(fbempty).SetTransparency(0.f);
+		//	}
+		//	else {
+		//		ECS::GetComponent<Sprite>(fbfull).SetTransparency(0.f);
+		//		ECS::GetComponent<Sprite>(fbhalf).SetTransparency(0.f);
+		//		ECS::GetComponent<Sprite>(fbempty).SetTransparency(1.f);
+		//	}
 	}
 }
 
@@ -1322,17 +1335,16 @@ void PhysicsPlayground::KeyboardUp()
 
 void PhysicsPlayground::SetPlayerCoords(int x, int y) {
 	ECS::GetComponent<Transform>(playerid).SetPosition(vec3(x, y, 2.f));
-	ECS::GetComponent<PhysicsBody>(playerid).SetPosition(b2Vec2(x,y));
+	ECS::GetComponent<PhysicsBody>(playerid).SetPosition(b2Vec2(x, y));
 }
+
+
+
 
 void PhysicsPlayground::Update()
 {
-	//ToneFire needs to tinkered with so don't try any sound things
-
-	//ToneFire::FMODCore fmod{};
-	//ToneFire::CoreSound testSound{ "Something's Outside.mp3" };
-	//testSound.Play();
-	//fmod.Update();
+	
+	fmod.Update();
 
 	auto& flashlight = ECS::GetComponent<PhysicsBody>(flashlightid);
 	auto& cursor = ECS::GetComponent<PhysicsBody>(cursorid);
@@ -1343,7 +1355,7 @@ void PhysicsPlayground::Update()
 
 	for (b2Body* b = m_physicsWorld->GetBodyList(); b; b = b->GetNext())
 	{
-		if (b->GetLinearVelocity() != b2Vec2(0,0)) {
+		if (b->GetLinearVelocity() != b2Vec2(0, 0)) {
 			b->SetLinearVelocity(b2Vec2(0, 0));
 		}
 	}
@@ -1384,7 +1396,7 @@ void PhysicsPlayground::Update()
 	if (playery < 2040 && playery > 2000) {
 		SetPlayerCoords(300, 8);
 	}
-	
+
 	//mechanics
 	if (playery > 30 && playery < 35 && playerx > 670 && playerx < 710) {
 		SetPlayerCoords(-1202, -2522);

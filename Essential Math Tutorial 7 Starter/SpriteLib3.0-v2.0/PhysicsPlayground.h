@@ -3,6 +3,8 @@
 #include "Scene.h"
 #include "PhysicsPlaygroundListener.h"
 #include <string>
+#include "Tone Fire/ToneFire.h"
+#include <unordered_map>
 
 class PhysicsPlayground : public Scene
 {
@@ -20,6 +22,7 @@ public:
 	void GUIWindowOne();
 	void GUIWindowTwo();
 
+	void myPlaySound(std::string filepath);
 
 	//Input overrides
 	void KeyboardHold() override;
@@ -27,6 +30,8 @@ public:
 	void KeyboardUp() override;
 
 protected:
+	std::unordered_map<std::string, ToneFire::CoreSound*> sounds;
+	ToneFire::FMODCore fmod{};
 	bool m_firstWindow = false;
 	bool m_secondWindow = false;
 
