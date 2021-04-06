@@ -16,6 +16,9 @@
     <Filter Include="Resource Files\ImGUi">
       <UniqueIdentifier>{a0fae234-1328-4004-9aa4-426e500481fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Tone Fire">
+      <UniqueIdentifier>{9041bf2c-29b3-46c1-a6d3-84084d17d470}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationController.h">
@@ -197,6 +200,9 @@
     </ClInclude>
     <ClInclude Include="AppearTrigger.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Tone Fire\ToneFire.h">
+      <Filter>Header Files\Tone Fire</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

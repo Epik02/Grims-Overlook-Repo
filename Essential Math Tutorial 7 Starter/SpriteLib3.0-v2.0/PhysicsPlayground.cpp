@@ -5,7 +5,7 @@
 #include "windows.h"
 #include "winuser.h"
 #include <ctime>
-
+#include "Tone Fire/ToneFire.h"
 #include <random>
 using namespace std;
 //int playerid;
@@ -37,6 +37,7 @@ PhysicsPlayground::PhysicsPlayground(std::string name)
 
 	m_physicsWorld->SetContactListener(&listener);
 }
+
 
 int assetMaker(b2World* m_physicsWorld, string asset, int sizex, int sizey, int posx, int posy) {
 	{
@@ -319,8 +320,12 @@ void trigger(b2World* m_physicsWorld, float platformx, float platformy, int plat
 	}
 }
 
+
+
 void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 {
+	
+
 	//Dynamically allocates the register
 	m_sceneReg = new entt::registry;
 
@@ -1322,6 +1327,13 @@ void PhysicsPlayground::SetPlayerCoords(int x, int y) {
 
 void PhysicsPlayground::Update()
 {
+	//ToneFire needs to tinkered with so don't try any sound things
+
+	//ToneFire::FMODCore fmod{};
+	//ToneFire::CoreSound testSound{ "Something's Outside.mp3" };
+	//testSound.Play();
+	//fmod.Update();
+
 	auto& flashlight = ECS::GetComponent<PhysicsBody>(flashlightid);
 	auto& cursor = ECS::GetComponent<PhysicsBody>(cursorid);
 	auto& player = ECS::GetComponent<PhysicsBody>(playerid);
