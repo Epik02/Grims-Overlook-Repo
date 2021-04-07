@@ -980,21 +980,21 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	
 	//furthest boundaries of Grocery Walls
 	//bottom
-	assetMaker(m_physicsWorld, "Yellow.png", 720, 15, 1000, -1280);
+	assetMaker(m_physicsWorld, "Yellow.png", 720, 15, 1000, -1282.5);
 	//top left
 	assetMaker(m_physicsWorld, "Yellow.png", 140, 15, 715, -715);
 	//top right
 	assetMaker(m_physicsWorld, "Yellow.png", 570, 15, 1070, -777.5);
 	//left side
-	assetMaker(m_physicsWorld, "Yellow.png", 15, 580, 650, -1000);
+	assetMaker(m_physicsWorld, "Yellow.png", 15, 580, 647.5, -1000);
 	//right side
-	assetMaker(m_physicsWorld, "Yellow.png", 15, 500, 1350 ,-1020);
+	assetMaker(m_physicsWorld, "Yellow.png", 15, 500, 1352.5 ,-1020);
 	//right topleft
 	assetMaker(m_physicsWorld, "Yellow.png", 15, 70, 785, -750);
 
 	//main hall
-	assetMaker(m_physicsWorld, "Yellow.png", 15, 160, 785, -1180);
-	assetMaker(m_physicsWorld, "Yellow.png", 15, 210, 785, -947.5);
+	assetMaker(m_physicsWorld, "Yellow.png", 15, 180, 785, -1190);
+	assetMaker(m_physicsWorld, "Yellow.png", 15, 210, 785.5, -950);
 	assetMaker(m_physicsWorld, "Yellow.png", 15, 60, 845, -1070);
 
 
@@ -1002,16 +1002,40 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	assetMaker(m_physicsWorld, "Yellow.png", 210, 15, 900, -1047.5);
 
 	//2nd room right side top
-	assetMaker(m_physicsWorld, "Yellow.png", 15, 165, 970, -857.5);
+	assetMaker(m_physicsWorld, "Yellow.png", 15, 165, 970, -862.5);
 	//2nd room right side bottom
-	assetMaker(m_physicsWorld, "Yellow.png", 15, 60, 970, -1025);
+	assetMaker(m_physicsWorld, "Yellow.png", 15, 60, 970, -1020);
 	//2nd room alcove bottom
-	assetMaker(m_physicsWorld, "Yellow.png", 105, 15, 1017.5, -995);
+	assetMaker(m_physicsWorld, "Yellow.png", 105, 15, 1017.5, -997.5);
 	//2nd room alcove right
 	assetMaker(m_physicsWorld, "Yellow.png", 15, 285, 1075, -1082.5);
+	//2nd room box wall
+	assetMaker(m_physicsWorld, "Yellow.png", 45, 50, 807.5, -869.5);
+
 
 	//3rd room bottom side
 	assetMaker(m_physicsWorld, "Yellow.png", 270, 15, 1163, -939.5);
+
+	//4th room
+	//right wall
+	assetMaker(m_physicsWorld, "Yellow.png", 15, 250, 1292.5, -1057.5);
+	//corner wall
+	assetMaker(m_physicsWorld, "Yellow.png", 50, 40, 1330, -1258);
+	//Mid line p1
+	assetMaker(m_physicsWorld, "Yellow.png", 40, 15, 1172.5, -1093);
+	//Mid line p2
+	assetMaker(m_physicsWorld, "Yellow.png", 37.5, 15, 1092.5, -1093);
+	//Mid line p3
+	assetMaker(m_physicsWorld, "Yellow.png", 60, 15, 1263, -1093);
+	//Mid line vertical 1
+	assetMaker(m_physicsWorld, "Yellow.png", 15, 50, 1240, -1115);
+	//Mid line vertical 2
+	assetMaker(m_physicsWorld, "Yellow.png", 15, 50, 1185, -1115);
+
+
+	//5th room
+	assetMaker(m_physicsWorld, "Yellow.png", 80, 15, 1042.5, -1222);
+	assetMaker(m_physicsWorld, "Yellow.png", 15, 127.5, 1009.5, -1166.25);
 
 	//HUD
 	fbfull = HUD(m_physicsWorld, "flashbarfull.png", 140, 100, 0, 0, 51);
