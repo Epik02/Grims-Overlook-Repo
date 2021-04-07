@@ -998,8 +998,8 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	assetMaker(m_physicsWorld, "Yellow.png", 15, 60, 845, -1070);
 
 
-	assetMaker(m_physicsWorld, "Yellow.png", 220, 15, 905 , -1107.5);
-	assetMaker(m_physicsWorld, "Yellow.png", 210, 15, 900, -1047.5);
+	assetMaker(m_physicsWorld, "Yellow.png", 200, 15, 895 , -1107.5);
+	assetMaker(m_physicsWorld, "Yellow.png", 210, 15, 900, -1045);
 
 	//2nd room right side top
 	assetMaker(m_physicsWorld, "Yellow.png", 15, 165, 970, -857.5);
@@ -1011,7 +1011,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	assetMaker(m_physicsWorld, "Yellow.png", 15, 285, 1075, -1082.5);
 
 	//3rd room bottom side
-	assetMaker(m_physicsWorld, "Yellow.png", 270, 15, 1163, -939.5);
+	assetMaker(m_physicsWorld, "Yellow.png", 270, 15, 1162.5, -937);
 
 	//HUD
 	fbfull = HUD(m_physicsWorld, "flashbarfull.png", 140, 100, 0, 0, 51);
