@@ -41,6 +41,7 @@ bool keypad = false;
 string keypadnum;
 int kpg, kpr;
 bool kpl = false;
+int cartCoords[34][2];
 //float energy;
 
 
@@ -258,11 +259,11 @@ int objectMaker(b2World* m_physicsWorld, string asset, int sizex, int sizey, int
 		return entity;
 	}
 }
-
-int pushObject(b2World* m_physicsWorld, string asset, int sizex, int sizey, int posx, int posy)
+int pushObject(b2World* m_physicsWorld, string asset, int sizex, int sizey, int posx, int posy, int id)
 {
 	
 	auto entity = ECS::CreateEntity();
+
 	//Add components
 	ECS::AttachComponent<Sprite>(entity);
 	ECS::AttachComponent<Transform>(entity);
@@ -289,6 +290,10 @@ int pushObject(b2World* m_physicsWorld, string asset, int sizex, int sizey, int 
 
 	//tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, OBJECTS, ENVIRONMENT, 0.3f);
 	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, OBJECTS, GROUND | PLAYER | ENEMY | OBJECTS | HEXAGON);
+	cartCoords[id][0] = posx;
+	cartCoords[id][1] = posy;
+	id++;
+	tempBody->SetUserData((void*)id);
 
 	tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
 	tempPhsBody.SetFixedRotation(true);
@@ -320,7 +325,6 @@ int HUD(b2World* m_physicsWorld, string asset, int sizex, int sizey, int posx, i
 
 		b2Body* tempBody;
 		b2BodyDef tempDef;
-		tempDef.type = b2_dynamicBody;
 		tempDef.type = b2_staticBody;
 		tempDef.position.Set(float32(posx), float32(posy));
 
@@ -500,7 +504,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		//tempPhsBody = PhysicsBody(entity, BodyType::TRIANGLE, tempBody, points, vec2(0.f, 0.f), false, PLAYER, ENEMY | OBJECTS | PICKUP | TRIGGER, 0.5f, 3.f);
 
 		tempPhsBody.SetRotationAngleDeg(180.f);
-		tempPhsBody.SetFixedRotation(true);
+		tempPhsBody.SetFixedRotation(false);
 		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
 		tempPhsBody.SetGravityScale(1.f);
 
@@ -1339,57 +1343,55 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	}
 
 	//boxes, currently placeholder for coordinates
-	{
-		//p1 lower hall
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1265, -1050);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1225, -1050);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1185, -1050);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1224, -970);
+	{//p1 lower hall
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1265, -1050, 0);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1225, -1050, 1);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1185, -1050, 2);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1224, -970, 3);
 
 		//p2 higher hall
-		pushObject(m_physicsWorld, "Cart.png", 40, 40,1177.5 , -825);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1217.5, -825);
-		pushObject(m_physicsWorld, "Cart.png", 40, 80, 1257.5, -845);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1217.5, -745);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1257.5, -745);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1177.5, -825, 4);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1217.5, -825, 5);
+		pushObject(m_physicsWorld, "Cart.png", 40, 80, 1257.5, -845, 6);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1217.5, -745, 7);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1257.5, -745, 8);
 
 		//p3 diagonal crossing
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1390, -817.5);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1430, -867.5);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1350, -867.5);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1350, -967.5);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1430, -967.5);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1390, -917.5);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1390, -1017.5);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1390, -817.5, 9);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1430, -867.5, 10);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1350, -867.5, 11);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1350, -967.5, 12);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1430, -967.5, 13);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1390, -917.5, 14);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1390, -1017.5, 15);
 
 		//p4 back hallway
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1761.5, -817.5);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1721.5, -857.5);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1721.5, -897.5);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1701.5, -897.5);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1641.5, -857.5);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1601.5, -817.5);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1601.5, -897.5);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1561.5, -857.5);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1521.5, -857.5);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1761.5, -817.5, 16);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1721.5, -857.5, 17);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1721.5, -897.5, 18);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1701.5, -897.5, 19);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1641.5, -857.5, 20);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1601.5, -817.5, 21);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1601.5, -897.5, 22);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1561.5, -857.5, 23);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1521.5, -857.5, 24);
 
 		//p5 battery or win trap
 		//top part
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1752.5, -1065.5);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1712.5, -1022.5);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1672.5, -1022.5);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1752.5, -1065.5, 25);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1712.5, -1022.5, 26);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1672.5, -1022.5, 27);
 		//Needs new asset
-		pushObject(m_physicsWorld, "Cart.png", 20, 135, 1642.5, -1072.6);
+		pushObject(m_physicsWorld, "Cart.png", 20, 135, 1642.5, -1072.6, 28);
 		//key stand in
 		//pushObject(m_physicsWorld, "Cart.png", 40, 40, 1602.5, -1065.5);
 
 		//bottom part
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1712, -1180);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1712, -1220);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1672, -1220);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1592, -1180);
-		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1642.5, -1260);
-
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1712, -1180, 29);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1712, -1220, 30);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1672, -1220, 31);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1592, -1180, 32);
+		pushObject(m_physicsWorld, "Cart.png", 40, 40, 1642.5, -1260, 33);
 	}
 
 	//HUD
@@ -1991,6 +1993,14 @@ void PhysicsPlayground::Update()
 
 	if(playery > -1282 && playery < -1200 && playerx > 1147.5 && playerx < 1285) {
 		SetPlayerCoords(500, 8);
+		for (b2Body* b = m_physicsWorld->GetBodyList(); b; b = b->GetNext())
+		{
+			if (b->GetUserData() != NULL) {
+				if ((int)b->GetUserData() >= 0 && b->GetType() == b2_dynamicBody && b->IsFixedRotation()) {
+					b->SetTransform(b2Vec2(cartCoords[(int)b->GetUserData()-1][0], cartCoords[(int)b->GetUserData()-1][1]), b->GetAngle());
+				}
+			}
+		}
 	}
 
 	flashlightangle = flashlight.GetRotationAngleDeg();
