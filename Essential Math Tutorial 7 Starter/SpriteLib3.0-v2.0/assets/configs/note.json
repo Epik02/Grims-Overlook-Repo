@@ -1,0 +1,309 @@
+{
+	"frames": [
+		{
+			"filename": "note-flapping0000.png",
+			"frame": {
+				"x": 1,
+				"y": 1,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "note-flapping0001.png",
+			"frame": {
+				"x": 1,
+				"y": 1503,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "note-flapping0002.png",
+			"frame": {
+				"x": 1,
+				"y": 3005,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "note-flapping0003.png",
+			"frame": {
+				"x": 1,
+				"y": 4507,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "note-flapping0004.png",
+			"frame": {
+				"x": 1,
+				"y": 6009,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "note-flapping0005.png",
+			"frame": {
+				"x": 1,
+				"y": 7511,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "note-flapping0006.png",
+			"frame": {
+				"x": 1,
+				"y": 9013,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "note-flapping0007.png",
+			"frame": {
+				"x": 1,
+				"y": 10515,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "note-flapping0008.png",
+			"frame": {
+				"x": 1,
+				"y": 12017,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "note-flapping0009.png",
+			"frame": {
+				"x": 1,
+				"y": 13519,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "note-flapping0010.png",
+			"frame": {
+				"x": 1,
+				"y": 15021,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "note-flapping0011.png",
+			"frame": {
+				"x": 1,
+				"y": 16523,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "note-flapping0012.png",
+			"frame": {
+				"x": 1,
+				"y": 18025,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "note-flapping0013.png",
+			"frame": {
+				"x": 1,
+				"y": 19527,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		}
+	],
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "spritesheet.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 1502,
+			"h": 21028
+		},
+		"scale": "1"
+	}
+}

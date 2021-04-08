@@ -1,0 +1,393 @@
+{
+	"frames": [
+		{
+			"filename": "oliver-walking0000.png",
+			"frame": {
+				"x": 100,
+				"y": 100,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "oliver-walking0001.png",
+			"frame": {
+				"x": 1,
+				"y": 1701,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "oliver-walking0002.png",
+			"frame": {
+				"x": 1,
+				"y": 3203,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "oliver-walking0003.png",
+			"frame": {
+				"x": 1,
+				"y": 4705,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "oliver-walking0004.png",
+			"frame": {
+				"x": 1,
+				"y": 6207,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "oliver-walking0005.png",
+			"frame": {
+				"x": 1,
+				"y": 7709,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "oliver-walking0006.png",
+			"frame": {
+				"x": 1,
+				"y": 9211,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "oliver-walking0007.png",
+			"frame": {
+				"x": 1,
+				"y": 10713,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "oliver-walking0008.png",
+			"frame": {
+				"x": 1,
+				"y": 12215,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "oliver-walking0009.png",
+			"frame": {
+				"x": 1,
+				"y": 13717,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "oliver-walking0010.png",
+			"frame": {
+				"x": 1,
+				"y": 15219,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "oliver-walking0011.png",
+			"frame": {
+				"x": 1,
+				"y": 16721,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "oliver-walking0012.png",
+			"frame": {
+				"x": 1,
+				"y": 18223,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "oliver-walking0013.png",
+			"frame": {
+				"x": 1,
+				"y": 19725,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "oliver-walking0014.png",
+			"frame": {
+				"x": 1,
+				"y": 21227,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "oliver-walking0015.png",
+			"frame": {
+				"x": 1,
+				"y": 22729,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "oliver-walking0016.png",
+			"frame": {
+				"x": 1,
+				"y": 24231,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		},
+		{
+			"filename": "oliver-walking0017.png",
+			"frame": {
+				"x": 1,
+				"y": 25733,
+				"w": 1500,
+				"h": 1500
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1500,
+				"h": 1500
+			},
+			"sourceSize": {
+				"w": 1500,
+				"h": 1500
+			}
+		}
+	],
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "spritesheet.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 1700,
+			"h": 27234
+		},
+		"scale": "1"
+	}
+}
