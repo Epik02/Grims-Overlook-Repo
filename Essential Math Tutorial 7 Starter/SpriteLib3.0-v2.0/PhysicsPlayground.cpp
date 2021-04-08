@@ -417,8 +417,6 @@ void trigger(b2World* m_physicsWorld, float platformx, float platformy, int plat
 
 void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 {
-	// loud af be careful before turning on
-	myPlaySound("Ambiance.mp3");
 
 	//Dynamically allocates the register
 	m_sceneReg = new entt::registry;
@@ -1625,8 +1623,9 @@ void PhysicsPlayground::myPlaySound(std::string filepath)
 		ToneFire::CoreSound* sound1=new ToneFire::CoreSound{ filepath, FMOD_2D };
 		sounds[filepath] = sound1;
 	}
-
-	sounds[filepath]->Play();
+	if (!sounds[filepath]->IsPlaying()) {
+		sounds[filepath]->Play();
+	}
 
 }
 
@@ -1843,6 +1842,8 @@ void PhysicsPlayground::Update()
 {
 	
 	fmod.Update();
+	// loud af be careful before turning on
+	myPlaySound("Ambiance.mp3");
 
 	auto& flashlight = ECS::GetComponent<PhysicsBody>(flashlightid);
 	auto& cursor = ECS::GetComponent<PhysicsBody>(cursorid);
