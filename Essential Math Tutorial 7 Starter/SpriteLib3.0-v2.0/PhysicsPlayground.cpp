@@ -25,6 +25,22 @@ int fbfull;
 int fbhalf;
 int fbempty;
 int mkid;
+bool flon;
+auto batterystart = 0;
+auto batteryend = 0;
+float timer1 = 0;
+float timer2 = 0;
+bool usingbattery = true;
+int battery1;
+int testme;
+HWND MyText;
+static int slideint = 0;
+int batterys = 0;
+int batterytrigger;
+bool keypad = false;
+string keypadnum;
+int kpg, kpr;
+bool kpl = false;
 //float energy;
 
 
@@ -741,6 +757,119 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	}
 
 	{
+		//big keypad
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		bignote1 = entity;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+
+		//Sets up components
+		std::string fileName = "keypad.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 153, 102);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(650.f, 100.f, 100.f));
+		ECS::GetComponent<Sprite>(entity).SetTransparency(0);
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32(102), float32(153));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, ENVIRONMENT, ENEMY | ENEMY);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		tempPhsBody.SetRotationAngleDeg(90.f);
+	}
+
+	{
+		//invisible
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		puzzleWall1 = entity;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+
+		//Sets up components
+		std::string fileName = "note.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 10, 10);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(650.f, 120.f, 0.f));
+		ECS::GetComponent<Sprite>(entity).SetTransparency(0);
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32(100), float32(100));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, ENVIRONMENT, PLAYER | ENEMY);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		tempPhsBody.SetRotationAngleDeg(90.f);
+
+
+	}
+
+	{
+		//Setup trigger keypad
+
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		oops = entity;
+
+		//Add components
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+
+		//Sets up components
+		std::string fileName = "boxSprite.jpg";
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 80.f));
+		ECS::GetComponent<Trigger*>(entity) = new PopUpTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(puzzleWall1);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(playerid);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(bignote1);
+		//ECS::GetComponent<Trigger*>(entity)->m_physicsWorld = m_physicsWorld;
+		//ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(playerid);
+
+
+		bool tester = false;
+
+		//ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(puzzleWall1);
+
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32(-970), float32(-2150)); //coords
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(40.f - shrinkX), float(40.f - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | OBJECTS);
+		tempPhsBody.SetColor(vec4(1.f, 0.f, 0.f, 0.3f));
+	}
+
+	{
 		// mechanics key
 		//Creates entity
 		auto entity = ECS::CreateEntity();
@@ -849,6 +978,82 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
 		tempPhsBody = PhysicsBody(entity, tempBody, float(40.f - shrinkX), float(40.f - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | OBJECTS);
+		tempPhsBody.SetColor(vec4(1.f, 0.f, 0.f, 0.3f));
+	}
+
+	{
+		//battery
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		battery1 = entity;
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+
+		//Sets up components
+		std::string fileName = "Battery.png";
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 40, 20);
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(650.f, 100.f, 100.f));
+		ECS::GetComponent<Sprite>(entity).SetTransparency(1);
+
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32(100), float32(0));
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX), float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, ENVIRONMENT, ENEMY | ENEMY);
+		tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+		tempPhsBody.SetRotationAngleDeg(90.f);
+	}
+
+	{
+		//Setup battery trigger
+
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		batterytrigger = entity;
+
+		//Add components
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+
+		//Sets up components
+		std::string fileName = "boxSprite.jpg";
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(30.f, -20.f, 80.f));
+		ECS::GetComponent<Trigger*>(entity) = new TrueFalseTrigger();
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(puzzleWall3);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(battery1);
+		//ECS::GetComponent<Trigger*>(entity)->m_physicsWorld = m_physicsWorld;
+		//ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(playerid);
+
+
+		bool tester = false;
+
+		//ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(puzzleWall1);
+
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		float shrinkX = 0.f;
+		float shrinkY = 0.f;
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_staticBody;
+		tempDef.position.Set(float32(100), float32(-5)); //coords
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(40.f - shrinkX), float(40.f - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
 		tempPhsBody.SetColor(vec4(1.f, 0.f, 0.f, 0.3f));
 	}
 
@@ -1041,6 +1246,15 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	fbfull = HUD(m_physicsWorld, "flashbarfull.png", 140, 100, 0, 0, 51);
 	fbhalf = HUD(m_physicsWorld, "flashbarempty.png", 140, 100, 0, 0, 51);
 	fbempty = HUD(m_physicsWorld, "flashbarempty.png", 140, 100, 0, 0, 51);
+
+	//Keypad Indicators
+	kpg = assetMaker(m_physicsWorld, "keypadr.png", 102, 153, 0, 0);
+	kpr = assetMaker(m_physicsWorld, "keypadg.png", 102, 153, 0, 0);
+	ECS::GetComponent<Sprite>(kpg).SetTransparency(0.0f);
+	ECS::GetComponent<Sprite>(kpr).SetTransparency(0.0f);
+
+	//Beginning Message
+	MessageBox(NULL, "Welcome To Grims Overlook", "New Game", NULL);
 
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
@@ -1325,7 +1539,7 @@ void PhysicsPlayground::KeyboardDown()
 	{
 		pgangledown = true;
 	}
-	if (Input::GetKeyDown(Key::E))
+	if (GetAsyncKeyState(VK_LBUTTON))
 	{
 		ECS::GetComponent<Sprite>(flashlightid).SetTransparency(0.0f);
 		flashlightclick = flashlightclick + 1;
@@ -1340,21 +1554,91 @@ void PhysicsPlayground::KeyboardDown()
 			//energy = tempenergy - clock();
 			//cout << energy;
 		}
-		//	if (energy >= 50) {
-		//		ECS::GetComponent<Sprite>(fbfull).SetTransparency(1.f);
-		//		ECS::GetComponent<Sprite>(fbhalf).SetTransparency(0.f);
-		//		ECS::GetComponent<Sprite>(fbempty).SetTransparency(0.f);
-		//	}
-		//	else if (energy <= 50 && energy > 0) {
-		//		ECS::GetComponent<Sprite>(fbfull).SetTransparency(0.f);
-		//		ECS::GetComponent<Sprite>(fbhalf).SetTransparency(1.f);
-		//		ECS::GetComponent<Sprite>(fbempty).SetTransparency(0.f);
-		//	}
-		//	else {
-		//		ECS::GetComponent<Sprite>(fbfull).SetTransparency(0.f);
-		//		ECS::GetComponent<Sprite>(fbhalf).SetTransparency(0.f);
-		//		ECS::GetComponent<Sprite>(fbempty).SetTransparency(1.f);
-		//	}
+
+	}
+
+	//if (WM_LBUTTONUP) {
+	//	ECS::GetComponent<Sprite>(flashlightid).SetTransparency(0.0f);
+	//	ECS::GetComponent<Sprite>(flashlightoff).SetTransparency(0.85f);
+	//}
+
+	if (Input::GetKeyDown(Key::E))
+	{
+		ECS::GetComponent<Sprite>(flashlightid).SetTransparency(0.0f);
+		flashlightclick = flashlightclick + 1;
+		if (flashlightclick % 2 == 0 && usingbattery == true) {
+			ECS::GetComponent<Sprite>(flashlightoff).SetTransparency(0.0f);
+			ECS::GetComponent<Sprite>(flashlightid).SetTransparency(0.85f);
+			flon = true;
+			//tempenergy = clock();
+		}
+		else {
+			ECS::GetComponent<Sprite>(flashlightid).SetTransparency(0.0f);
+			ECS::GetComponent<Sprite>(flashlightoff).SetTransparency(0.85f);
+			flon = false;
+			//energy = tempenergy - clock();
+			//cout << energy;
+		}
+	}
+	if (Input::GetKeyDown(Key::NumPad0)) {
+
+		if (keypad == true) {
+			keypadnum.append("0");
+		}
+	}
+	if (Input::GetKeyDown(Key::NumPad1)) {
+
+		if (keypad == true) {
+			keypadnum.append("1");
+		}
+	}
+	if (Input::GetKeyDown(Key::NumPad2)) {
+
+		if (keypad == true) {
+			keypadnum.append("2");
+		}
+	}
+	if (Input::GetKeyDown(Key::NumPad3)) {
+
+		if (keypad == true) {
+			keypadnum.append("3");
+		}
+	}
+	if (Input::GetKeyDown(Key::NumPad4)) {
+
+		if (keypad == true) {
+			keypadnum.append("4");
+		}
+	}
+	if (Input::GetKeyDown(Key::NumPad5)) {
+
+		if (keypad == true) {
+			keypadnum.append("5");
+		}
+	}
+	if (Input::GetKeyDown(Key::NumPad6)) {
+
+		if (keypad == true) {
+			keypadnum.append("6");
+		}
+	}
+	if (Input::GetKeyDown(Key::NumPad7)) {
+
+		if (keypad == true) {
+			keypadnum.append("7");
+		}
+	}
+	if (Input::GetKeyDown(Key::NumPad8)) {
+
+		if (keypad == true) {
+			keypadnum.append("8");
+		}
+	}
+	if (Input::GetKeyDown(Key::NumPad9)) {
+
+		if (keypad == true) {
+			keypadnum.append("9");
+		}
 	}
 }
 
@@ -1439,6 +1723,86 @@ void PhysicsPlayground::Update()
 		cursor.SetPosition(b2Vec2((((point.x) / 2) + playerx) - 240, -(((point.y) / 2) - playery) + 130));
 	}
 
+	//gets player to rotate based on where the mouse is
+	float x1 = 1, y1 = 1, f1;
+	if (point.x > 960 && point.y <= 540) { //top right quadrant of screen
+		x1 = point.x - 960;
+		y1 = point.y - 540;
+		f1 = (-atan(y1 / x1)) * (180 / PI);
+		player.SetRotationAngleDeg(f1);
+		flashlight.SetRotationAngleDeg(f1);
+	}
+	if (point.x <= 960 && point.y <= 540) { // top left quadrant of screen
+		x1 = point.x - 960;
+		y1 = point.y - 540;
+		f1 = (-atan(y1 / x1)) * (180 / PI);
+		player.SetRotationAngleDeg(f1 + 180.f);
+		flashlight.SetRotationAngleDeg(f1 + 180.f);
+	}
+	if (point.x <= 960 && point.y > 540) { //bottom left quadrant of screen
+		x1 = point.x - 960;
+		y1 = point.y - 540;
+		f1 = (-atan(y1 / x1)) * (180 / PI);
+		player.SetRotationAngleDeg(f1 + 180.f);
+		flashlight.SetRotationAngleDeg(f1 + 180.f);
+	}
+	if (point.x > 960 && point.y > 540) { //bottom right quadrant of screen
+		x1 = point.x - 960;
+		y1 = point.y - 540;
+		f1 = (-atan(y1 / x1)) * (180 / PI);
+		player.SetRotationAngleDeg(f1);
+		flashlight.SetRotationAngleDeg(f1);
+	}
+	//cout << player.GetRotationAngleDeg() << "\n";
+
+	//Timer 1 (For flashlight battery)
+	//cout << timer1 << "\n";
+	if (flon == true) {
+		timer1 = timer1 + 1.f;
+	}
+	else {
+		timer1 = timer1 - 0.f;
+	}
+
+	//Timer 2 (For keypad lights)
+	//cout << timer1 << "\n";
+	if (kpl == true) {
+		timer2 = timer1 + 1.f;
+	}
+	else {
+		timer2 = 0.f;
+	}
+
+	//Changes Battery Life Based on Time
+	if (timer1 <= 5000) {
+		ECS::GetComponent<Sprite>(fbfull).SetTransparency(1.f);
+		ECS::GetComponent<Sprite>(fbhalf).SetTransparency(0.f);
+		ECS::GetComponent<Sprite>(fbempty).SetTransparency(0.f);
+	}
+	else if (timer1 >= 5000 && timer1 < 10000) {
+		ECS::GetComponent<Sprite>(fbfull).SetTransparency(0.f);
+		ECS::GetComponent<Sprite>(fbhalf).SetTransparency(1.f);
+		ECS::GetComponent<Sprite>(fbempty).SetTransparency(0.f);
+	}
+	else {
+		ECS::GetComponent<Sprite>(fbfull).SetTransparency(0.f);
+		ECS::GetComponent<Sprite>(fbhalf).SetTransparency(0.f);
+		ECS::GetComponent<Sprite>(fbempty).SetTransparency(1.f);
+	}
+
+
+	//Gives player a battery when they hit it
+	if ((ECS::GetComponent<Sprite>(battery1).GetTransparency()) == 0) {
+		batterys = batterys + 1;
+		ECS::GetComponent<Transform>(batterytrigger).SetPosition(vec3(-1000, -1000, 0.f));
+		ECS::GetComponent<Transform>(battery1).SetPosition(vec3(-1000, -1000, 0.f));
+		ECS::GetComponent<Sprite>(battery1).SetTransparency(1);
+	}
+
+	if (batterys > 0 && timer1 > 10000) {
+		batterys = batterys - 1;
+		timer1 = 0;
+	}
 
 	//Sets things to follow the player
 	ECS::GetComponent<Transform>(bignote1).SetPosition(vec3(playerx + 100, playery + 40, 50.f));
@@ -1447,9 +1811,11 @@ void PhysicsPlayground::Update()
 	ECS::GetComponent<Transform>(fbhalf).SetPosition(vec3(playerx - 90, playery + 90, 50.f));
 	ECS::GetComponent<Transform>(fbempty).SetPosition(vec3(playerx - 90, playery + 90, 50.f));
 	ECS::GetComponent<Transform>(mkid).SetPosition(vec3(playerx + 100, playery + 100, 50.f));
+	ECS::GetComponent<Transform>(kpg).SetPosition(vec3(playerx + 100, playery + 40, 50.f));
+	ECS::GetComponent<Transform>(kpr).SetPosition(vec3(playerx + 100, playery + 40, 50.f));
 
 
-	cout << playerx << "\n" << playery << "\n";
+	//cout << playerx << "\n" << playery << "\n";
 
 	//library
 	if (playery > 30 && playery < 40 && playerx > 280 && playerx < 320) {
@@ -1485,5 +1851,50 @@ void PhysicsPlayground::Update()
 
 	//cout << ECS::GetComponent<Camera>(cameraid).GetPositionX();
 	//ECS::GetComponent<Camera>(cameraid).GetPositionY();
+
+		//Keypad in mechanics puzzle
+	if (playery > -2170 && playery < -2130 && playerx < -950 && playerx > -990) {
+		keypad = true;
+	}
+	else {
+		keypad = false;
+	}
+
+	if (keypadnum.length() > 3 && keypadnum != "1432") {
+		kpl = true;
+		ECS::GetComponent<Sprite>(kpr).SetTransparency(1.f);
+		if (timer2 > 300) {
+			ECS::GetComponent<Sprite>(kpr).SetTransparency(0.f);
+			keypadnum = "";
+			kpl = false;
+		}
+	}
+	if (keypadnum == "1432") {
+		kpl = true;
+		ECS::GetComponent<Sprite>(kpg).SetTransparency(1.f);
+		if (timer2 > 300) {
+			ECS::GetComponent<Sprite>(kpg).SetTransparency(0.f);
+			keypadnum = "";
+			kpl = false;
+		}
+	}
+
+	cout << "Keyoapfd num: " << keypadnum << "\n";
+	//cout <<"boolo"<< keypad << "\n";
+
+	//HWND window1 = GetForegroundWindow();
+	//RECT rect;
+	//RECT windowrect;
+	//GetWindowRect(window1, &rect);
+	//int windowx = rect.left;
+	//int windowy = rect.top;
+
+	//cout << windowx << "\n";
+	//cout << windowy << "\n";
+
+	//cout << ECS::GetComponent<Camera>(cameraid).GetPositionX();
+	//ECS::GetComponent<Camera>(cameraid).GetPositionY();
+
+
 
 }

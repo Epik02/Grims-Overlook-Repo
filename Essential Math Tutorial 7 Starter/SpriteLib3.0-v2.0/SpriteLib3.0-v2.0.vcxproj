@@ -189,6 +189,7 @@
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TranslateTrigger.h" />
     <ClInclude Include="Trigger.h" />
+    <ClInclude Include="TrueFalseTrigger.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="Vector.h" />
@@ -249,6 +250,7 @@
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="TranslateTrigger.cpp" />
     <ClCompile Include="Trigger.cpp" />
+    <ClCompile Include="TrueFalseTrigger.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="Utilities.cpp" />
     <ClCompile Include="Vector.cpp" />
