@@ -40,12 +40,10 @@ enum AnimTypes
 #ifdef TOPDOWN
 	IDLE = 0,
 	WALK = 4,
-	ATTACK = 8
 #endif
 #ifndef TOPDOWN
 	IDLE = 0,
 	WALK = 2,
-	ATTACK = 4
 #endif
 };
 

@@ -467,22 +467,17 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 		ECS::AttachComponent<CanJump>(entity);
-		//ECS::AttachComponent<Player>(entity);
-		//ECS::AttachComponent<AnimationController>(entity);
+		ECS::AttachComponent<Player>(entity);
+		ECS::AttachComponent<AnimationController>(entity);
 
 
 		//Sets up the components
-		std::string fileName = "Player.png";
-		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, 40, 30);
-		ECS::GetComponent<Sprite>(entity).SetTransparency(1.f);
+		std::string fileName = "spritesheets/walking.png";
+		std::string animations = "walking.json";
+		ECS::GetComponent<Player>(entity).InitPlayer(fileName, animations, 40, 30, &ECS::GetComponent<Sprite>(entity), &ECS::GetComponent<AnimationController>(entity),
+			&ECS::GetComponent<Transform>(entity));
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 30.f, 2.f));
 		
-
-		/*std::string fileName = "spritesheets/walking.png";
-		std::string animations = "walking.json";
-
-		ECS::GetComponent<Player>(entity).InitPlayer(fileName, animations, 40, 30, &ECS::GetComponent<Sprite>(entity), &ECS::GetComponent<AnimationController>(entity),&ECS::GetComponent<Transform>(entity));*/
-
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
 
@@ -501,7 +496,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		//std::vector<b2Vec2> points = {b2Vec2(-tempSpr.GetWidth()/2.f, -tempSpr.GetHeight()/2.f), b2Vec2(tempSpr.GetWidth()/2.f, -tempSpr.GetHeight()/2.f), b2Vec2(0.f, tempSpr.GetHeight()/2.f)};
 		//tempPhsBody = PhysicsBody(entity, BodyType::TRIANGLE, tempBody, points, vec2(0.f, 0.f), false, PLAYER, ENEMY | OBJECTS | PICKUP | TRIGGER, 0.5f, 3.f);
 
-		tempPhsBody.SetRotationAngleDeg(180.f);
+		tempPhsBody.SetRotationAngleDeg(90.f);
 		tempPhsBody.SetFixedRotation(false);
 		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
 		tempPhsBody.SetGravityScale(1.f);
@@ -1851,6 +1846,8 @@ void PhysicsPlayground::Update()
 	float playerx, playery, flashlightangle, cx, cy;
 	playerx = ECS::GetComponent<Transform>(playerid).GetPositionX();
 	playery = ECS::GetComponent<Transform>(playerid).GetPositionY();
+	ECS::GetComponent<Player>(MainEntities::MainPlayer()).Update();
+
 
 	for (b2Body* b = m_physicsWorld->GetBodyList(); b; b = b->GetNext())
 	{
