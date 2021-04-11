@@ -472,8 +472,8 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 
 
 		//Sets up the components
-		std::string fileName = "spritesheets/walking.png";
-		std::string animations = "walking.json";
+		std::string fileName = "spritesheets/anim.png";
+		std::string animations = "ANIM.json";
 		ECS::GetComponent<Player>(entity).InitPlayer(fileName, animations, 40, 30, &ECS::GetComponent<Sprite>(entity), &ECS::GetComponent<AnimationController>(entity),
 			&ECS::GetComponent<Transform>(entity));
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 30.f, 2.f));
