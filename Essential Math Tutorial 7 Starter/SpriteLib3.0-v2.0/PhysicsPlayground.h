@@ -42,4 +42,13 @@ protected:
 	int puzzleWall1;
 	int puzzleWall2;
 	int puzzleWall3;
+	int puzzleWall4;
+	int puzzleWall5;
+	int puzzleWall6;
+	int puzzleWall7;
+	int puzzleWall8;
+	int puzzleWall9;
+	int puzzleWall10;
+	int puzzleWall11;
+	int puzzleWall12;
 };
